@@ -13,7 +13,35 @@ This repository serves as the central technical requirements and proposal docume
 
 ---
 
-## 2. Architecture Design
+## 2. Literature Review & Industry Benchmarks
+
+To ensure this pipeline remains at the cutting edge, we have analyzed both academic literature and the technical stacks of frontier biotech companies. This "Literature Review" informs our architectural decisions.
+
+### A. Research Papers Analysis
+*   **IEDB 2024 Update (`gkae1092`)**: Confirms that high-quality, curated datasets are the bedrock of any predictive model.
+    *   *Decision*: We will use **MHCflurry 2.0** as our primary predictor because it is retrainable on these latest IEDB datasets, avoiding the stagnation of static, pre-trained models.
+*   **Antibody-Antigen Interaction (`btae556`, `2503.17666v1`)**: Recent papers like **ISPIPab** and **MuLAAIP** highlight the shift towards **B-cell/Antibody** prediction and **Multi-Modal Learning** (Sequence + Structure).
+    *   *Decision*: Our architecture includes a **Graph Neural Network (GNN)** module in the "Intelligence Layer" to support these emerging structure-based models, moving beyond simple sequence alignment.
+
+### B. Frontier Industry Standards
+Leading companies have moved beyond simple "binding affinity" filters toward full-system simulation:
+
+| Company | Key Tech / Approach | Insight for Our Pipeline |
+| :--- | :--- | :--- |
+| **NEC Bio** | **NeoAgDT (Digital Twin)** | Moves beyond ranking to *optimizing* vaccine composition using simulation. |
+| **BioNTech** | **DeepChain™ (RL)** | Uses Reinforcement Learning to "engineer" immunogenicity. |
+| **Turbine AI** | **Simulated Cells™** | Simulates cell signaling to predict resistance (HLA loss). |
+| **Gritstone** | **EDGE™ (Ligandome)** | Uses Mass Spec (Ligandome) data as the "Ground Truth" for training. |
+
+### C. Synthesized Conclusions
+These findings dictate three core requirements for our `infra-requirements`:
+1.  **Dynamic Simulation**: We cannot rely on static scripts. We need an "Intelligence Layer" (Digital Twin Model) that can simulate testing.
+2.  **Ligandome Validation**: Mass Spectrometry (Step 8) is not optional; it is the only way to generate "Ground Truth" data like Gritstone.
+3.  **Heterogeneity**: We must model the tumor as a population. Single-cell data (Step 6) is critical to understanding which clones are presenting antigens.
+
+---
+
+## 3. Architecture Design
 
 The architecture is designed to be **Cloud-Agnostic** by relying on:
 1.  **Containerization**: Docker/Singularity for all tools.
@@ -111,7 +139,7 @@ flowchart LR
 
 ---
 
-## 3. Pipeline Steps & Infrastructure Explanation
+## 4. Pipeline Steps & Infrastructure Explanation
 
 Detailed analysis of each step is available in `pipeline/pipeline.md` and `research/research_papers_analysis.md`.
 
@@ -129,7 +157,7 @@ Detailed analysis of each step is available in `pipeline/pipeline.md` and `resea
 
 ---
 
-## 4. Developer Infrastructure Requirements
+## 5. Developer Infrastructure Requirements
 
 To enable a world-class engineering environment, we mandate the following stack:
 
@@ -144,7 +172,7 @@ To enable a world-class engineering environment, we mandate the following stack:
 
 ---
 
-## 5. Cost Analysis (Estimates)
+## 6. Cost Analysis (Estimates)
 
 *Note: Based on typical "Startup" usage patterns (e.g., 100 samples/month).*
 
@@ -160,7 +188,7 @@ To enable a world-class engineering environment, we mandate the following stack:
 
 ---
 
-## 6. Roadmap
+## 7. Roadmap
 
 ### **Phase 1: Foundation (Weeks 1-4)**
 *   [ ] Set up GitHub Repo & CI/CD.
