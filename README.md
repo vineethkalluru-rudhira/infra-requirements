@@ -188,6 +188,49 @@ To enable a world-class engineering environment, we mandate the following stack:
 
 ---
 
+## 6.5 Cloud & AI Startup Incentive Programs
+
+To maximize cost efficiency, we will leverage major startup programs from cloud providers and AI platforms. These programs can provide **$600k - $1.5M** in credits, effectively covering 12-24 months of infrastructure costs.
+
+### AWS Activate
+**Standard Benefits** (for startups with VC/accelerator partnerships):
+- Up to **$100,000 USD** in AWS credits
+- Technical support and training
+- **Application**: Through Activate Provider or direct
+
+**2025 Generative AI Accelerator** (highly competitive):
+- Up to **$1,000,000 USD** in credits
+- Personalized AI/ML mentorship
+- Biotech/pharma use cases prioritized
+
+### NVIDIA Inception
+**Core Program Benefits**:
+- **10,000 inference credits** on ai.nvidia.com
+- Preferential pricing on **NVIDIA AI Enterprise** (includes Clara for life sciences)
+- Early access to **BioNeMo** for drug discovery
+- VC Alliance and Healthcare Partner connections
+
+**NVIDIA + Microsoft Partnership**:
+- Additional **$150,000 USD** in Azure credits for healthcare/life sciences startups
+
+### Google for Startups Cloud Program
+**AI-First Startups**:
+- Up to **$350,000 USD** in GCP credits over 2 years
+- Dedicated AI training and technical support
+
+**Standard Track** (Pre-Seed to Series A):
+- Year 1: Up to **$100,000 USD**
+- Year 2: Additional 20% coverage (up to **$100,000 USD**)
+
+### Implementation Strategy
+1.  **Immediate**: Apply to AWS Activate and Google for Startups AI-First track
+2.  **Week 2**: Enroll in NVIDIA Inception
+3.  **Quarter 2**: Target AWS Gen AI Accelerator for next cohort
+
+**Expected Total**: **$600,000 - $1,500,000** in cloud credits (details in [`infrastructure/startup_incentives.md`](file:///Users/vineethkalluru/Documents/infra-requirements/infrastructure/startup_incentives.md))
+
+---
+
 ## 7. Roadmap
 
 ### **Phase 1: Foundation (Weeks 1-4)**
