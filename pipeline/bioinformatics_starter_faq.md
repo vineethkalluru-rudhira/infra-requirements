@@ -43,7 +43,8 @@ Welcome! This document is designed to bridge the gap between computer science/da
 ### Q7: What is a "Digital Twin" in Biology?
 **A:** A **Bio-Digital Twin** is a virtual replica of a patient's biological system.
 *   Instead of just a static medical record, it is a *dynamic computer model* that simulates how that specific patient's immune system will react.
-*   *Our Goal:* We input the patient's DNA/RNA + their specific HLA type (immune genetics) -> The Model predicts which cancer mutations (neoantigens) will likely trigger an immune response -> We design a vaccine based on that simulation.
+*   *Our Goal:* We input the patient's DNA/RNA + their specific HLA type (immune genetics) → The Model predicts which cancer mutations (neoantigens) **have the potential** to trigger an immune response **if we train the immune system to recognize them** → We design a personalized vaccine based on those predictions.
+*   *Key Insight:* The tumor has hundreds of mutations, but the immune system is currently **ignoring most of them**. We predict which ones are the **best vaccine targets** to teach the immune system to attack.
 
 ---
 
