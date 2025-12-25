@@ -175,7 +175,8 @@ To enable a world-class engineering environment, we mandate the following stack:
 
 ### **IDE & Productivity**
 *   **AntiGravity IDE**: The primary development environment. It provides AI-native coding assistance, context awareness, and integrated terminal/browser tools essential for managing complex infra code.
-*   **Google Workspace + Gemini**: For documentation, collaboration, and email. Gemini Advanced is utilized for summarizing research papers and drafting documentation.
+*   **Perplexity AI**: Utilized for **Deep Research**, technical discovery, and synthesizing complex bioinformatics literature.
+*   **Gemini for Google Workspace**: The core of **Workplace Productivity**, documentation, and collaboration within Google Docs, Sheets, and Gmail.
 
 ### **DevOps & CI/CD**
 *   **GitHub**: Source of truth. Actions for CI/CD.
