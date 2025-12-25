@@ -264,6 +264,6 @@ To maximize cost efficiency, we will leverage major startup programs from cloud 
 *   [ ] Develop Clinical Dashboard on GCP Cloud Run.
 
 ### **Phase 4: Scale & Spatial (Weeks 24+)**
-*   [ ] Add Spatial Transcriptomics module.
-*   [ ] Optimize for multi-cloud burst compute.
+*   [ ] Add Spatial Transcriptomics module (RAPIDS on GCP A100s).
+*   [ ] Optimize for multi-cloud data orchestration.
 *   [ ] FDA/Compliance readiness (HIPAA audit).
