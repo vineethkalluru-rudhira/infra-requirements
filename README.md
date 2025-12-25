@@ -43,10 +43,22 @@ These findings dictate three core requirements for our `infra-requirements`:
 
 ## 3. Architecture Design
 
-The architecture is designed to be **Cloud-Agnostic** by relying on:
-1.  **Containerization**: Docker/Singularity for all tools.
-2.  **Orchestration**: Nextflow (supports AWS Batch, Google Batch, Azure Batch, and K8s).
-3.  **Storage Abstraction**: S3-compatible object storage for data, POSIX-compliant shared file systems for high-performance computing (HPC) steps.
+The architecture follows a **Hybrid Cloud Strategy** to leverage the unique strengths of both AWS and GCP, ensuring maximum performance for both bioinformatics and AI:
+
+### **Hybrid Platform Split**
+1.  **AWS (Primary Analysis Layer)**:
+    - **Service**: **AWS HealthOmics** for managed Nextflow orchestration (Steps 1-4).
+    - **Purpose**: High-throughput variant calling (WES/WGS) and transcriptomics.
+    - **Optimization**: Uses sequence-aware compression to reduce storage costs by 40%.
+2.  **GCP (Intelligence & Digital Twin Layer)**:
+    - **Service**: **Vertex AI** and **TPUs/A100s** for Steps 6-9.
+    - **Purpose**: Training custom Graph Neural Networks (GNNs) and foundation models for MHC prediction.
+    - **Analytics**: **BigQuery** for cohort-level longitudinal data mining.
+
+### **Core Components**
+1.  **Containerization**: Docker/Singularity for all tools ensures cross-cloud portability.
+2.  **Orchestration**: Nextflow (supports AWS Batch/HealthOmics and GCP Batch as distinct profiles).
+3.  **Data Ingestion**: Automated transfer of processed VCF/Expression data from AWS storage to GCP Vertex AI for downstream modeling.
 
 ### High-Level Architecture
 
@@ -235,20 +247,21 @@ To maximize cost efficiency, we will leverage major startup programs from cloud 
 
 ### **Phase 1: Foundation (Weeks 1-4)**
 *   [ ] Set up GitHub Repo & CI/CD.
-*   [ ] Configure Cloud Accounts (AWS/GCP) & Apply for Credits.
-*   [ ] Build Docker containers for Step 2 (Parabricks) and Step 4 (MHCflurry).
-*   [ ] Test "Hello World" Nextflow pipeline locally.
+*   [x] Configure **AWS HealthOmics** & Apply for Activate Credits ($100k).
+*   [x] Configure **GCP Vertex AI** & Apply for AI-First Credits ($350k).
+*   [ ] Build Docker containers for Step 2 (Parabricks) on AWS.
+*   [ ] Test "Hello World" Nextflow pipeline on AWS HealthOmics.
 
-### **Phase 2: Core Pipeline (Weeks 5-12)**
-*   [ ] Implement WES/WGS -> VCF pipeline.
-*   [ ] Implement RNA-seq -> Expression pipeline.
+### **Phase 2: Primary Pipeline - AWS (Weeks 5-12)**
+*   [ ] Implement WES/WGS -> VCF pipeline on AWS.
+*   [ ] Implement RNA-seq -> Expression pipeline on AWS.
 *   [ ] Integrate MHCflurry for Neoantigen prediction.
-*   [ ] Validate against public datasets (TCGA samples).
+*   [ ] Set up automated data sync for processed files to GCP.
 
-### **Phase 3: Digital Twin Integration (Weeks 13-24)**
-*   [ ] Build Feature Store.
-*   [ ] Implement Graph Neural Network (GNN) model (`MuLAAIP` architecture).
-*   [ ] Develop Clinical Dashboard for visualization.
+### **Phase 3: Digital Twin & ML - GCP (Weeks 13-24)**
+*   [ ] Build Feature Store on GCP Vertex AI.
+*   [ ] Implement GNN model (`MuLAAIP`) using GCP TPUs.
+*   [ ] Develop Clinical Dashboard on GCP Cloud Run.
 
 ### **Phase 4: Scale & Spatial (Weeks 24+)**
 *   [ ] Add Spatial Transcriptomics module.
