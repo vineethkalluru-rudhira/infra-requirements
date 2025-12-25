@@ -150,3 +150,44 @@ Google Cloud follows a more traditional, highly flexible consumption model.
 | **Workflow Language** | Heavy reliance on Nextflow. | Heavy reliance on WDL or Custom Apps. |
 | **ML Needs** | Using standard models. | Training custom foundation models. |
 | **Regulatory Needs** | High (GxP/Clinical tracking). | High (HIPAA/Research collaboration). |
+
+---
+
+## 11. The "Final Mile" Decision Checklist (2025 Edition)
+
+Before signing a long-term contract or committing your primary data, evaluate these "hidden" factors:
+
+| Factor | Critical Question to Ask Your Provider | AWS Consideration | GCP Consideration |
+| :--- | :--- | :--- | :--- |
+| **Data Residency** | Can you handle specialized data sovereignty (e.g., GDPR, China, clinical trial local laws)? | Largest global footprint of edge locations and regional data centers. | Strong in EU and US; growing in specialized regions but slightly behind AWS in total regions. |
+| **Migration Path** | How much will it cost me to LEAVE if I pivot my strategy in 2 years? | Standard egress fees apply; credits usually don't cover "moving out." | **Winner**: Google recently announced waiving egress fees for customers migrating away from GCP. |
+| **Support Quality** | Do I get a "Biotech Desk" or just general cloud support? | "AWS Health" team is highly mature; established SA (Solutions Architects) for HealthOmics. | Highly consultative for AI-first biotech; deep ties to DeepMind and Verily. |
+| **Compliance 2.0** | Do you support **Continuous Compliance Monitoring (CCM)**? | Multi-account audit trails are excellent; "GxP on AWS" whitepapers are the industry gold standard. | Excellent real-time dashboards for HIPAA/GDPR via Cloud Security Command Center. |
+| **Third-Party Marketplace** | Is my specific tool (e.g., Sentieon, BaseSpace, NVIDIA Parabricks) "one-click"? | **Winner**: The AWS Marketplace has the widest selection of bioinformatics AMIs and SaaS. | Strong in AI-first partnerships (e.g., Form Bio, Benchling integration). |
+
+---
+
+## 12. Vendor Lock-in & Data Portability
+
+### The "Data Gravity" Risk
+In bioinformatics, the sheer volume of WGS data (>100GB/sample) creates "Data Gravity." Once you store petabytes in one cloud, the "cost to move" becomes a barrier.
+- **AWS Mitigation**: Use **HealthOmics** but keep a secondary copy of raw FASTQs in **S3 Standard** (or Glacier). AWS makes it very easy to move data *within* their ecosystem (e.g., S3 to SageMaker).
+- **GCP Mitigation**: Google’s waiver of egress fees for migration is a unique "anti-lock-in" feature. Using **Terra.bio** also provides a layer of abstraction that makes it slightly easier to mirror workflows on other clouds if needed.
+
+---
+
+## 13. Strategic Support Ecosystems
+
+### AWS Activate vs. Google for Startups (Beyond the Credits)
+- **AWS Activate**: Best for startups that need **scale and predictability**. You get access to the **Healthcare Accelerator**, connects with VCs that are "all-in" on AWS, and a very large pool of hireable AWS-certified developers.
+- **Google Cloud**: Best for startups that need **scientific innovation**. You get closer access to the teams building **AlphaFold**, **DeepVariant**, and **Vertex AI**. If your core value prop is a unique AI model, Google will likely provide more specialized support to help you tune it.
+
+---
+
+## 14. Final Recommendation: Which one to start with TODAY?
+
+1.  **Start with AWS HealthOmics if** your priority is **launching the pipeline in < 2 weeks**. Its managed nature means you spend zero time on infrastructure and 100% on analysis.
+2.  **Start with Google Cloud if** your priority is **training your own MHC LLM**. The TPU availability and Vertex AI integration will save you months of R&D effort in the training phase.
+
+> [!NOTE]
+> **Pro-Tip**: Many startups adopt a **Hybrid-Cloud** approach. They use **AWS HealthOmics** for the "Primary Analysis" (FastQ -> VCF) to save costs via the Sequence Store, and then egress the smaller VCF/Expression data to **GCP Vertex AI** for the "Downstream ML/Digital Twin" training.
