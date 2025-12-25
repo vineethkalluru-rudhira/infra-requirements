@@ -88,5 +88,65 @@ Both providers offer aggressive programs for new biotech startups.
 > **Choose Google Cloud if:**
 > Your "MHC-centric Digital Twin" involves building **custom Large Language Models (LLMs)** or Graph Neural Networks (GNNs). The integration between Vertex AI, BigQuery, and TPUs creates a more powerful environment for the *downstream* Machine Learning parts of your pipeline.
 
-### Final Verdict:
-For a seed-stage startup building a complex ML model on top of genomics data, **Google Cloud** offers the best long-term AI-native ecosystem. However, for the initial data processing heavy-lift, **AWS HealthOmics** is the most streamlined operational choice.
+---
+
+## 7. Deep-Dive Comparison: Feature & Service Mapping
+
+This section provides an exhaustive mapping of how both platforms address the life sciences stack, irrespective of specific pipeline steps.
+
+| Capability Layer | AWS HealthOmics Service | GCP Multiomics Equivalent | Key Difference |
+| :--- | :--- | :--- | :--- |
+| **Raw Data Storage** | **Sequence Store** (Read-sets) | **Cloud Storage** (Buckets) | AWS uses biological indexing (Gigabases); GCP uses object-based (GB). |
+| **Workflow Engine** | **Managed Engine** (Nextflow/WDL) | **Cloud Batch** / **Terra.bio** | AWS is "serverless" for workflows; GCP gives more control over VM configs. |
+| **Genomic Queries** | **Analytics Store** (Iceberg-based) | **BigQuery** | GCP BigQuery is a global leader in SQL-based genomic analytics at scale. |
+| **Pre-built Pipelines** | **Ready2Run** (Fixed price) | **DeepVariant / AlphaFold** | AWS offers fixed-price convenience; GCP offers AI-first computational depth. |
+| **ML/AI Platform** | **Amazon SageMaker** | **Vertex AI** | Vertex AI is more integrated into the multi-omics data lifecycle on GCP. |
+| **Collaborative UI** | AWS Console / Private APIs | **Terra.bio** (Benchling partner) | Terra (GCP) is the industry standard for collaborative research UI. |
+| **Protein Folding** | Ready2Run AlphaFold2 | Vertex AI / AlphaFold native | GCP typically receives the latest AlphaFold updates first. |
+
+---
+
+## 8. Detailed Cost Analysis
+
+### AWS HealthOmics: The "Gigabase" Model
+AWS breaks away from traditional cloud storage pricing by billing based on biological units.
+*   **Sequence Store**: $0.005769 per **Gigabase** (1 billion DNA bases) for active storage.
+*   **Archive Tiers**: $0.001154 per Gigabase (ideal for 10-year retention).
+*   **Analytics Store**: $0.035 per GB/month (post-ingestion).
+*   **Ready2Run**: Fixed price per successful run (e.g., ~$35 for GATK WGS).
+*   **Advantage**: High predictability. You know exactly what a "sample" costs before you run it.
+
+### GCP Multiomics: The "Consumed Resource" Model
+Google Cloud follows a more traditional, highly flexible consumption model.
+*   **Object Storage**: ~$0.02 per GB (Standard), ~$0.0012 per GB (Archive).
+*   **Compute (Batch)**: Pay per second for the VM used. No "orchestration" fee.
+*   **BigQuery**: $5 per TB scanned (though many genomic queries are optimized to be cheaper).
+*   **Preemptible/Spot**: Deep discounts (up to 80%) on GPUs/CPUs are more consistently available on GCP.
+*   **Advantage**: Cost efficiency at scale. If you optimize your containers, GCP is almost always the cheapest raw compute provider.
+
+---
+
+## 9. Platform-Specific Advantages
+
+### Why choose AWS HealthOmics? (The "Efficiency" Factor)
+1.  **Lower Operational Overhead**: You don't need a DevOps engineer to manage Batch queues or VPCs. HealthOmics automates the entire infrastructure lifecycle.
+2.  **Storage Intelligence**: The Sequence Store is "omics-aware." It handles the compression and conversion of FASTQ -> CRAM automatically, saving up to 40% on storage costs without manual script-writing.
+3.  **Data Provenance**: Native tracking of how a sample traveled from raw FASTQ to a VCF variant, satisfying strict GxP and clinical requirements out of the box.
+
+### Why choose Google Cloud? (The "AI & Discovery" Factor)
+1.  **AI Integration**: Vertex AI is arguably more mature for high-dimensional biology models. Features like the **Genomic Feature Store** allow you to treat DNA variants as training inputs with zero latency.
+2.  **The "Terra" Ecosystem**: Terra.bio (built on GCP) connects you to a massive public data ecosystem (TCGA, Broad Institute). You can "bring your code to the data" rather than downloading petabytes of raw files.
+3.  **BigQuery Performance**: For cohort-level analysis (e.g., looking for a specific mutation across 10,000 patients), BigQuery’s columnar storage is significantly faster and more intuitive than querying Parquet/Iceberg files in AWS.
+4.  **TPU Availability**: For massive transformer-based protein language models, Google’s TPUs provide a performance-per-dollar advantage that NVIDIA GPUs can't always match.
+
+---
+
+## 10. Summary Table: Global Selection Criteria
+
+| Criterion | Choose AWS HealthOmics If... | Choose GCP Multiomics If... |
+| :--- | :--- | :--- |
+| **Team Skillset** | Bioinformaticians with minimal DevOps. | Data Scientists & AI Researchers. |
+| **Storage Goal** | Long-term clinical data retention. | Active multi-modal data mining. |
+| **Workflow Language** | Heavy reliance on Nextflow. | Heavy reliance on WDL or Custom Apps. |
+| **ML Needs** | Using standard models. | Training custom foundation models. |
+| **Regulatory Needs** | High (GxP/Clinical tracking). | High (HIPAA/Research collaboration). |
