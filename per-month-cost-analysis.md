@@ -21,7 +21,7 @@ AWS HealthOmics is a strong fit for **almost the entire pipeline (Steps 1-8)** d
 
 ---
 
-## Primary Differences vs. Susmitha's Estimate
+## Primary Differences w.r.t Susmitha's Estimate
 
 1.  **GPU Optimization (Huge Savings)**:
     *   **Susmitha**: Used CPU for *Step 6 (scRNA-seq)* → **~$9.12 / sample**.
