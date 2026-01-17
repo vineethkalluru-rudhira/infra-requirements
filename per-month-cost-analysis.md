@@ -21,6 +21,18 @@ AWS HealthOmics is a strong fit for **almost the entire pipeline (Steps 1-8)** d
 
 ---
 
+## Primary Differences vs. Susmitha's Estimate
+
+1.  **GPU Optimization (Huge Savings)**:
+    *   **Susmitha**: Used CPU for *Step 6 (scRNA-seq)* → **~$9.12 / sample**.
+    *   **Proposed Plan**: Switched to GPU (`omics.g6`) + RAPIDS → **~$0.90 / sample** (10x cheaper).
+
+2.  **Ready2Run vs Custom (Predictability)**:
+    *   **Susmitha**: Estimated custom CPU workflows for *Step 2 (WGS)* with a wide variance ($6 - $50).
+    *   **Proposed Plan**: Standardized on **Ready2Run** for a guaranteed **$10.00** fixed cost.
+
+---
+
 ## Detailed Pipeline Step Analysis (Revised)
 
 ### ✅ Step 1: Cohort Ingestion
